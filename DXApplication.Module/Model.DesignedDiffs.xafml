@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="DXApplication">
+  <ActionDesign>
+    <Actions>
+      <Action Id="BaoDuong.StatusAction" TargetObjectsCriteria="[TrangThaiBaoDuong] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiBaoDuong,lt#" ImageName="Check" />
+      <Action Id="ChoThue.TrangThaiThueAction" TargetObjectsCriteria="[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,luutam#" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser" Caption="Base User" />
+    <Class Name="DXApplication.Module.BusinessObjects.Main.BaoDuong">
+      <AppearanceRules>
+        <AppearanceRule Id="HideEdit" Criteria="[TrangThaiBaoDuong] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiBaoDuong,dx#" BackColor="224, 224, 224" />
+        <AppearanceRule Id="TrangThai" FontColor="White" Context="Any" />
+      </AppearanceRules>
+    </Class>
+    <Class Name="DXApplication.Module.BusinessObjects.Main.ChoThue">
+      <AppearanceRules>
+        <AppearanceRule Id="HideEdit" Criteria="[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,dangchothue# Or [TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,datraxe#" BackColor="224, 224, 224" Priority="0" />
+        <AppearanceRule Id="HideGioThue" Criteria="[LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,ngay# Or [LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,thang#" Visibility="Hide" Enabled="True" />
+        <AppearanceRule Id="HideNgayThang" Enabled="True" Criteria="[LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,gio# Or [LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,ngay#" />
+        <AppearanceRule Id="HideNgayThue" Criteria="[LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,gio# Or [LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,thang#" Enabled="True" />
+        <AppearanceRule Id="ShowEdit" Visibility="" Enabled="" Priority="1" />
+      </AppearanceRules>
+    </Class>
+  </BOModel>
+  <Options>
+    <LayoutManagerOptions RequiredFieldMark="*" />
+  </Options>
+  <SchemaModules>
+    <SchemaModule Name="CloneObjectModule" Version="22.2.3.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="22.2.3.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="ApplicationUser_ListView" Caption="Users" />
+    <DetailView Id="ChoThue_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="Detail" RelativeSize="47.05128205128205">
+            <LayoutGroup Id="Detail_col1" RelativeSize="49.90059642147117">
+              <LayoutItem Id="NgayThue" RelativeSize="9.580838323353293" />
+              <LayoutItem Id="LoaiThue" RelativeSize="7.18562874251497" />
+              <LayoutItem Id="SoGioThue" ViewItem="SoGioThue" Index="2" RelativeSize="7.18562874251497" IsNewNode="True" />
+              <LayoutItem Id="NgayTra" ViewItem="NgayTra" Index="3" RelativeSize="7.18562874251497" IsNewNode="True" />
+              <LayoutItem Id="Thang" ViewItem="Thang" Index="4" RelativeSize="7.18562874251497" IsNewNode="True" />
+              <LayoutItem Id="TrangThaiThue" RelativeSize="7.18562874251497" Index="5" />
+              <LayoutItem Id="TenNguoiThue" RelativeSize="7.18562874251497" Index="6" />
+              <LayoutItem Id="SoDienThoai" RelativeSize="7.18562874251497" Index="7" />
+              <LayoutItem Id="SoCMND" RelativeSize="7.18562874251497" Index="8" />
+              <LayoutItem Id="NoiCap" RelativeSize="7.18562874251497" Index="9" />
+              <LayoutItem Id="NgayCap" RelativeSize="7.18562874251497" Index="10" />
+              <LayoutItem Id="DienGiai" RelativeSize="18.562874251497007" Index="11" />
+              <LayoutItem Id="TamUng" RelativeSize="6.70391061452514" Index="11" Removed="True" />
+              <LayoutItem Id="SoPhieu" RelativeSize="7.18562874251497" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Detail_col2" Direction="Horizontal" RelativeSize="50.09940357852883" Caption="Detail_col2">
+              <LayoutGroup Id="Autobae4955b-9253-434d-843c-b3a734dc8d14" ShowCaption="False" Caption="Autobae4955b-9253-434d-843c-b3a734dc8d14(16)" Index="0" RelativeSize="65.67460317460318" IsNewNode="True">
+                <LayoutItem Id="SoPhieu" ViewItem="SoPhieu" Index="0" RelativeSize="9.580838323353293" IsNewNode="True" />
+                <LayoutItem Id="TamUng" ViewItem="TamUng" Index="1" RelativeSize="7.18562874251497" IsNewNode="True" />
+                <LayoutItem Id="TienThue" ViewItem="TienThue" Index="2" RelativeSize="7.18562874251497" IsNewNode="True" />
+                <LayoutItem Id="TienDenBu" ViewItem="TienDenBu" Index="3" RelativeSize="7.18562874251497" IsNewNode="True" />
+                <LayoutItem Id="PhaiThu" ViewItem="PhaiThu" Index="4" RelativeSize="7.18562874251497" IsNewNode="True" />
+                <LayoutItem Id="TongPhi" ViewItem="TongPhi" Index="5" RelativeSize="7.18562874251497" IsNewNode="True" />
+                <LayoutItem Id="PhuThu" ViewItem="PhuThu" Index="6" RelativeSize="7.18562874251497" IsNewNode="True" />
+                <LayoutItem Id="PhaiTra" ViewItem="PhaiTra" Index="7" RelativeSize="7.18562874251497" IsNewNode="True" />
+                <LayoutItem Id="GhiChuNoiBo" ViewItem="GhiChuNoiBo" Index="8" RelativeSize="18.562874251497007" IsNewNode="True" />
+                <LayoutItem Id="GhiChuNhanHang" ViewItem="GhiChuNhanHang" Index="9" RelativeSize="21.55688622754491" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Auto3d7b65f4-8b5d-48a2-81a9-1073d43ee6cf" ShowCaption="False" Caption="Auto3d7b65f4-8b5d-48a2-81a9-1073d43ee6cf(28)" Index="1" RelativeSize="34.32539682539682" IsNewNode="True">
+                <LayoutItem Id="CMNDT" ViewItem="CMNDT" Index="0" RelativeSize="9.580838323353293" IsNewNode="True" />
+                <LayoutItem Id="CMNDS" ViewItem="CMNDS" Index="1" RelativeSize="90.41916167664671" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutItem Id="GhiChuNhanHang" Removed="True" />
+              <LayoutItem Id="GhiChuNoiBo" Removed="True" />
+              <LayoutItem Id="NgayTra" Removed="True" />
+              <LayoutItem Id="PhaiThu" Removed="True" />
+              <LayoutItem Id="PhaiTra" Removed="True" />
+              <LayoutItem Id="PhuThu" Removed="True" />
+              <LayoutItem Id="SoGioThue" Removed="True" />
+              <LayoutItem Id="Thang" Removed="True" />
+              <LayoutItem Id="TienDenBu" Removed="True" />
+              <LayoutItem Id="TienThue" Removed="True" />
+              <LayoutItem Id="TongPhi" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" RelativeSize="0.1282051282051282">
+            <LayoutGroup Id="ChoThue" Caption="ChoThue" RelativeSize="100">
+              <LayoutItem Id="CMNDS" Index="0" RelativeSize="100" Removed="True" />
+              <LayoutItem Id="CMNDT" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Xes_Group" Direction="Vertical" RelativeSize="52.82051282051282">
+            <LayoutItem Id="Xes" RelativeSize="100" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="ChoThue_Xes_ListView">
+      <Columns>
+        <ColumnInfo Id="ChoThue" Index="-1" />
+        <ColumnInfo Id="DangKyLanDau" Index="-1" />
+        <ColumnInfo Id="DungTich" Index="-1" />
+        <ColumnInfo Id="HetDangKiem" Index="-1" />
+        <ColumnInfo Id="HetHanBaoHiem" Index="-1" />
+        <ColumnInfo Id="HinhAnh" Index="-1" />
+        <ColumnInfo Id="SoCho" Index="-1" />
+        <ColumnInfo Id="SoKhung" Index="-1" />
+        <ColumnInfo Id="SoMay" Index="-1" />
+        <ColumnInfo Id="TenChuXe" Index="-1" />
+        <ColumnInfo Id="TrangThai" Index="-1" />
+        <ColumnInfo Id="TrangThaiXe" Index="-1" />
+        <ColumnInfo Id="GiaThueGio" Index="5" />
+        <ColumnInfo Id="GiaThueNgay" Index="6" />
+        <ColumnInfo Id="GiaThueThang" Index="7" />
+      </Columns>
+    </ListView>
+    <ListView Id="Personnel_ListView" NewItemRowPosition="Bottom" />
+  </Views>
+</Application>

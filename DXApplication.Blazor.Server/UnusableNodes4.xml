@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="Xe_DetailView">
+      <Layout Id="Layout">
+        <TabbedGroup Id="Tabs" Index="0" RelativeSize="100">
+          <LayoutGroup Id="Item1" ShowCaption="True" CaptionLocation="Top" Direction="Horizontal" Index="0" Caption="Xe" RelativeSize="100">
+            <LayoutGroup Id="Auto746441ad-2bb9-45a7-9db8-477ca7e520ad" ShowCaption="False" Caption="Auto746441ad-2bb9-45a7-9db8-477ca7e520ad(3)" Index="0" RelativeSize="39.682539682539684">
+              <LayoutItem Id="LoaiXe" ViewItem="LoaiXe" Index="0" RelativeSize="5.936920222634508" />
+              <LayoutItem Id="DoiXe" ViewItem="DoiXe" Index="1" RelativeSize="4.452690166975882" />
+              <LayoutItem Id="BienSo" ViewItem="BienSo" Index="2" RelativeSize="4.452690166975882" />
+              <LayoutItem Id="MauSon" ViewItem="MauSon" Index="3" RelativeSize="4.452690166975882" />
+              <LayoutItem Id="QuocGia" ViewItem="QuocGia" Index="4" RelativeSize="4.452690166975882" />
+              <LayoutItem Id="TenChuXe" ViewItem="TenChuXe" Index="5" RelativeSize="76.25231910946196" />
+            </LayoutGroup>
+            <LayoutGroup Id="Auto04766abf-536e-496c-b953-75de724b6afb" ShowCaption="False" Caption="Auto04766abf-536e-496c-b953-75de724b6afb(10)" Index="1" RelativeSize="39.55026455026455">
+              <LayoutItem Id="GiaThueGio" ViewItem="GiaThueGio" Index="0" RelativeSize="5.936920222634508" />
+              <LayoutItem Id="GiaThueNgay" ViewItem="GiaThueNgay" Index="1" RelativeSize="4.452690166975882" />
+              <LayoutItem Id="GiaThueThang" ViewItem="GiaThueThang" Index="2" RelativeSize="4.452690166975882" />
+              <LayoutItem Id="TrangThai" ViewItem="TrangThai" Index="3" RelativeSize="4.452690166975882" />
+              <LayoutItem Id="TrangThaiXe" ViewItem="TrangThaiXe" Index="4" RelativeSize="4.452690166975882" />
+              <LayoutItem Id="DienGiai" ViewItem="DienGiai" Index="5" RelativeSize="76.25231910946196" />
+            </LayoutGroup>
+            <LayoutItem Id="HinhAnh" ViewItem="HinhAnh" Index="2" RelativeSize="20.767195767195766" />
+          </LayoutGroup>
+          <LayoutGroup Id="Main" RelativeSize="100" Index="1">
+            <LayoutGroup Id="Detail" RelativeSize="100" ShowCaption="False">
+              <LayoutGroup Id="Auto14b63121-1f12-46b1-ba93-43f7302cc07b" ShowCaption="False" Caption="Auto14b63121-1f12-46b1-ba93-43f7302cc07b(20)" Index="0" RelativeSize="50">
+                <LayoutItem Id="SoCho" ViewItem="SoCho" Index="0" RelativeSize="5.936920222634508" />
+                <LayoutItem Id="DungTich" ViewItem="DungTich" Index="1" RelativeSize="4.452690166975882" />
+                <LayoutItem Id="SoKhung" ViewItem="SoKhung" Index="2" RelativeSize="4.452690166975882" />
+                <LayoutItem Id="SoMay" ViewItem="SoMay" Index="3" RelativeSize="4.452690166975882" />
+                <LayoutGroup Id="Detail_col1" ShowCaption="False" Index="4" RelativeSize="80.70500927643785" />
+              </LayoutGroup>
+              <LayoutGroup Id="Detail_col2" RelativeSize="50">
+                <LayoutItem Id="DangKyLanDau" RelativeSize="5.936920222634508" Index="0" />
+                <LayoutItem Id="DienGiai" RelativeSize="15.384615384615385" Index="0" Removed="True" />
+                <LayoutItem Id="DungTich" RelativeSize="20" Index="0" Removed="True" />
+                <LayoutItem Id="SoCho" RelativeSize="17.391304347826086" Index="0" Removed="True" />
+                <LayoutItem Id="SoKhung" RelativeSize="23.529411764705884" Index="0" Removed="True" />
+                <LayoutItem Id="SoMay" RelativeSize="28.571428571428573" Index="0" Removed="True" />
+                <LayoutItem Id="HetDangKiem" RelativeSize="4.452690166975882" Index="1" />
+                <LayoutItem Id="HetHanBaoHiem" RelativeSize="89.6103896103896" Index="2" />
+                <LayoutItem Id="TrangThaiXe" RelativeSize="13.793103448275861" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Detail_col1" RelativeSize="50" Caption="Detail_col1" Removed="True">
+                <LayoutItem Id="BienSo" RelativeSize="13.793103448275861" Index="0" Removed="True" />
+                <LayoutItem Id="DoiXe" RelativeSize="13.793103448275861" Index="0" Removed="True" />
+                <LayoutItem Id="GiaThueGio" RelativeSize="13.793103448275861" Index="0" Removed="True" />
+                <LayoutItem Id="GiaThueNgay" RelativeSize="13.793103448275861" Index="0" Removed="True" />
+                <LayoutItem Id="GiaThueThang" RelativeSize="13.793103448275861" Index="0" Removed="True" />
+                <LayoutItem Id="MauSon" RelativeSize="13.793103448275861" Index="0" Removed="True" />
+                <LayoutItem Id="QuocGia" RelativeSize="13.793103448275861" Index="0" Removed="True" />
+                <LayoutItem Id="TenChuXe" RelativeSize="13.793103448275861" Index="0" Removed="True" />
+                <LayoutItem Id="TrangThai" RelativeSize="100" Index="0" Removed="True" />
+                <LayoutItem Id="LoaiXe" RelativeSize="12.5" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="SimpleEditors" RelativeSize="74.44444444444444" Removed="True">
+              <LayoutGroup Id="Xe" RelativeSize="100" Caption="Hình ảnh">
+                <LayoutItem Id="HinhAnh" RelativeSize="100" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="NhieuHinhs_Group" Direction="Vertical" RelativeSize="100" Index="2">
+            <LayoutItem Id="NhieuHinhs" RelativeSize="100" />
+          </LayoutGroup>
+        </TabbedGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <BOModel Id="BOModel">
+    <Class Name="DXApplication.Module.BusinessObjects.Main.ChoThue">
+      <AppearanceRules Id="AppearanceRules">
+        <AppearanceRule Id="SoGioThue" Visibility="Hide" Context="Any" Criteria="[LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,ngay# And [LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,thang#" />
+      </AppearanceRules>
+    </Class>
+  </BOModel>
+</Application>

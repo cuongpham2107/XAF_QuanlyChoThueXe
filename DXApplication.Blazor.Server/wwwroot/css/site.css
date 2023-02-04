@@ -1,0 +1,126 @@
+html, body {
+    height: 100%;
+}
+
+app {
+    display: block;
+    height: 100%;
+}
+
+.header-logo {
+    flex-shrink: 0;
+    background-color: currentColor;
+    -webkit-mask: url('../images/Logo.svg');
+    mask: url('../images/Logo.svg');
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    width: 180px;
+    height: 24px;
+}
+
+#blazor-error-ui {
+    background: inherit;
+    bottom: 0;
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 100001;
+}
+
+/*TODO: m?t s? c?p nh?t nh? cho Blazor UI*/
+
+.sidebar {
+    border-right: lightgray 1px solid;
+}
+
+.xaf-navmenu a .xaf-nav-link {
+    text-decoration: revert !important;
+}
+
+.dxbl-grid-command-cell .dxbl-btn-link > span {
+    text-decoration: revert !important;
+    font-weight: bold;
+}
+
+
+.tool-bar button {
+    -webkit-box-shadow: 2px 2px 2px 0px rgb(0 0 0 / 20%);
+    box-shadow: 2px 2px 2px 0px rgb(0 0 0 / 20%);
+    border-radius: .2rem;
+    padding: .40625rem .75rem;
+}
+
+.main-toolbar {
+    -webkit-box-shadow: 0 0 2px 2px rgb(0 0 0 / 20%);
+    box-shadow: 0 0px 1px 2px rgb(0 0 0 / 20%);
+    border-radius: 0;
+    margin-bottom: 0.8rem;
+}
+
+    .main-toolbar .dxbl-btn {
+        box-shadow: 2px 2px 2px 0px rgb(0 0 0 / 20%);
+    }
+
+.logon-main {    
+    box-shadow: 6px 8px 10px 0 rgb(0 0 0 / 30%);    
+}
+label.dxbl-fl-cpt.dxbl-text {
+    font-weight: 600;
+}
+
+.loader {
+    margin: 10px auto;
+    color: gray;
+    width: 85px;
+    height: 40px;
+    --d: radial-gradient(farthest-side,currentColor 90%,#0000);
+    background: var(--d),var(--d),var(--d),var(--d);
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    animation: m 3s infinite;
+}
+
+@keyframes m {
+    0% {
+        background-position: calc(0*100%/3) 100%, calc(1*100%/3) 100%, calc(2*100%/3) 100%, calc(3*100%/3) 100%
+    }
+
+    12.5% {
+        background-position: calc(0*100%/3) 0, calc(1*100%/3) 100%, calc(2*100%/3) 100%, calc(3*100%/3) 100%
+    }
+
+    25% {
+        background-position: calc(0*100%/3) 0, calc(1*100%/3) 0, calc(2*100%/3) 100%, calc(3*100%/3) 100%
+    }
+
+    37.5% {
+        background-position: calc(0*100%/3) 0, calc(1*100%/3) 0, calc(2*100%/3) 0, calc(3*100%/3) 100%
+    }
+
+    50% {
+        background-position: calc(0*100%/3) 0, calc(1*100%/3) 0, calc(2*100%/3) 0, calc(3*100%/3) 0
+    }
+
+    62.5% {
+        background-position: calc(0*100%/3) 100%, calc(1*100%/3) 0, calc(2*100%/3) 0, calc(3*100%/3) 0
+    }
+
+    75% {
+        background-position: calc(0*100%/3) 100%, calc(1*100%/3) 100%, calc(2*100%/3) 0, calc(3*100%/3) 0
+    }
+
+    87.5% {
+        background-position: calc(0*100%/3) 100%, calc(1*100%/3) 100%, calc(2*100%/3) 100%, calc(3*100%/3) 0
+    }
+
+    100% {
+        background-position: calc(0*100%/3) 100%, calc(1*100%/3) 100%, calc(2*100%/3) 100%, calc(3*100%/3) 100%
+    }
+}
+
+.dxbl-grid-table td {
+    white-space: nowrap;
+}
