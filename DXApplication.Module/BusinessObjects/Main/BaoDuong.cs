@@ -25,20 +25,20 @@ namespace DXApplication.Module.BusinessObjects.Main
     [DefaultClassOptions]
     [CustomDetailView(Tabbed = true)]
     [NavigationItem(Menu.MenuMain)]
-    [DefaultProperty($"{nameof(Ngay)}-{nameof(LoaiBaoDuong)}")]
-    //[ImageName("car")]
+    [DefaultProperty(nameof(TenPhieuBaoDuong))]
+    [ImageName("insurance")]
+    
     [XafDisplayName("Bảo dưỡng xe")]
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, true, NewItemRowPosition.Top)]
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
 
-    [Appearance("TrangThai", AppearanceItemType = "ViewItem", TargetItems = "TrangThaiBaoDuong",
-    Criteria = "[TrangThaiBaoDuong] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiBaoDuong,dx#", Context = "Any", BackColor = "DeepSkyBlue",FontColor ="White", Priority = 1)]
+    [Appearance("TrangThai", AppearanceItemType = "ViewItem", TargetItems = "TrangThaiBaoDuong", Criteria = "[TrangThaiBaoDuong] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiBaoDuong,dx#", Context = "Any", BackColor = "DeepSkyBlue",FontColor ="White", Priority = 1)]
 
     [Appearance("HideEdit", AppearanceItemType= "ViewItem",TargetItems ="*",Criteria = "[TrangThaiBaoDuong] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiBaoDuong,dx#", Context ="Any", Enabled =false)]   
 
     
-    public class BaoDuong : BaseObject
+    public class BaoDuong : BaseObject, IListViewPopup
     { 
         public BaoDuong(Session session)
             : base(session)
@@ -50,6 +50,7 @@ namespace DXApplication.Module.BusinessObjects.Main
             
         }
 
+        string tenPhieuBaoDuong;
         Xe xe;
         string dienGiai;
         TrangThaiBaoDuong trangThaiBaoDuong;
@@ -61,6 +62,23 @@ namespace DXApplication.Module.BusinessObjects.Main
         int soLuong;
         LoaiBaoDuong loaiBaoDuong;
         #region Properties
+        [XafDisplayName("Tên phiếu bảo dưỡng")]
+        [VisibleInDetailView(true)]
+        [VisibleInListView(true)]
+        [VisibleInLookupListView(true)]
+        [ModelDefault("AllowEdit","False")]
+        public string TenPhieuBaoDuong
+        {
+            get
+            {
+                if(!IsLoading && !IsSaving)
+                {
+                   return $"{Ngay}-{LoaiBaoDuong}";
+                }
+                return null;
+            }
+            set => SetPropertyValue(nameof(TenPhieuBaoDuong), ref tenPhieuBaoDuong, value);
+        }
         [VisibleInDetailView(true)]
         [VisibleInListView(true)]
         [Association("Xe-BaoDuongs")]
@@ -130,12 +148,12 @@ namespace DXApplication.Module.BusinessObjects.Main
         #endregion
 
         #region Action
-        [Action(Caption ="Duyệt & Chốt", AutoCommit = true,ConfirmationMessage ="Bạn có chắc duyệt dữ liệu này? Sau khi duyệt, bạn không thể chỉnh sửa được nữa"  ,TargetObjectsCriteria = "[TrangThaiBaoDuong] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiBaoDuong,lt#", ImageName= "Check", TargetObjectsCriteriaMode = DevExpress.ExpressApp.Actions.TargetObjectsCriteriaMode.TrueAtLeastForOne, SelectionDependencyType = MethodActionSelectionDependencyType.RequireSingleObject)]
-        public void StatusAction()
-        {
-            TrangThaiBaoDuong = TrangThaiBaoDuong.dx;
-            Session.Save(this);
-        }
+        //[Action(Caption ="Duyệt & Chốt", AutoCommit = true,ConfirmationMessage ="Bạn có chắc duyệt dữ liệu này? Sau khi duyệt, bạn không thể chỉnh sửa được nữa"  ,TargetObjectsCriteria = "[TrangThaiBaoDuong] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiBaoDuong,lt#", ImageName= "Check", TargetObjectsCriteriaMode = DevExpress.ExpressApp.Actions.TargetObjectsCriteriaMode.TrueAtLeastForOne, SelectionDependencyType = MethodActionSelectionDependencyType.RequireSingleObject)]
+        //public void StatusAction()
+        //{
+        //    TrangThaiBaoDuong = TrangThaiBaoDuong.dx;
+        //    Session.Save(this);
+        //}
 
         #endregion
     }

@@ -8,10 +8,14 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
+using DevExpress.XtraPrinting.Native;
+using DXApplication.Blazor.BusinessObjects;
 using DXApplication.Blazor.Common;
+using DXApplication.Module.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using static DXApplication.Blazor.Common.Enums;
@@ -20,20 +24,39 @@ namespace DXApplication.Module.BusinessObjects.Main
 {
     [DefaultClassOptions]
     [NavigationItem(Menu.MenuMain)]
-    [DefaultProperty(nameof(TenNguoiThue))]
-    //[ImageName("car")]
+    [DefaultProperty(nameof(SoPhieu))]
+    [ImageName("car-rental")]
     [XafDisplayName("Cho thuê")]
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, true, NewItemRowPosition.Top)]
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
+    
+    
+    //[CustomDetailView(FieldsToRemove = new[] { nameof(Xes) })]
+    //[CustomDetailView(ViewId = $"{nameof(Division)}_DetailView_Full", Tabbed = true)]
+    //[CustomRootListView(DetailViewId = $"{nameof(Division)}_DetailView_Full")]
+    //[CustomNestedListView(nameof(Xes), FieldsToSum = new[] { "FullName:Count" })]
+    
+    //[CustomDetailView(Tabbed = true)]
+    //[CustomListViewColumnWidth(new[] { $"{nameof(FullName)}:20%", "Age:30", "DateOfBirth:80" })]
+    //[CustomDetailView(FieldsToRemove = new[] { nameof(Jobs), nameof(Resources) })]
+    //[CustomDetailView(ViewId = $"{nameof(Personnel)}_DetailView_Full", Tabbed = true)]
+    //[CustomListView(DetailViewId = $"{nameof(Personnel)}_DetailView_Full",
+    //    FieldsToSum = new[] { "FullName:Count", "DateOfBirth:Min,Max", "Age:Min,Max" })]
+    //[CustomNestedListView(nameof(Jobs))]
+    //[CustomNestedListView(nameof(Resources))]
 
-    [Appearance("PhaiThu",BackColor = "Blue",FontColor ="White", TargetItems = "PhaiThu", Context = "Any",Priority = 1)]
+   
+
+    [Appearance("HideEdit", AppearanceItemType = "ViewItem", BackColor = "224,224,224", TargetItems = "*", Criteria = "[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,dangchothue# Or [TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,datraxe#", Context = "Any", Enabled = false,Priority = 0)]
+
+    [Appearance("PhaiThu", BackColor = "Blue", FontColor = "White", TargetItems = "PhaiThu", Context = "Any", Priority = 1)]
     [Appearance("PhaiTra", BackColor = "Gold", FontColor = "Black", TargetItems = "PhaiTra", Context = "Any", Priority = 2)]
 
-    [Appearance("HideEdit", AppearanceItemType = "ViewItem", BackColor = "224,224,224", TargetItems = "*", Criteria = "[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,dangchothue# Or [TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,datraxe#", Context = "Any", Enabled = false,Priority = 5)]
-   
-    [Appearance("Trangthaidangchothue", BackColor = "Gold", FontColor = "Black", TargetItems = "TrangThaiThue", Context = "Any",Priority = 3)]
-    public class ChoThue : BaseObject
+    [Appearance("Trangthaidangchothue", BackColor = "Gold", FontColor = "Black",Criteria = "[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,dangchothue#", TargetItems = "TrangThaiThue", Context = "Any",Priority = 3)]
+    [Appearance("Trangthaidatraxe", BackColor = "DeepSkyBlue", FontColor = "Black", Criteria = "[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,datraxe#", TargetItems = "TrangThaiThue", Context = "Any", Priority = 4)]
+    [Appearance("TamUng", BackColor = "255,255,255", FontColor = "255,128,0", TargetItems = "TamUng", Context = "ListView", Priority = 5)]
+    public class ChoThue : BaseObject, INestedListViewInline 
     { 
         public ChoThue(Session session)
             : base(session)
@@ -271,6 +294,10 @@ namespace DXApplication.Module.BusinessObjects.Main
                     {
                         return TongPhi - TamUng;
                     }
+                    if(TamUng != 0)
+                    {
+                        return TamUng;
+                    }
                 }
                 return 0;
             }
@@ -326,45 +353,37 @@ namespace DXApplication.Module.BusinessObjects.Main
         #region Association
         [Association("ChoThue-Xes")]
         [XafDisplayName("Chọn xe muốn thuê")]
+
         public XPCollection<Xe> Xes
         {
             get
             {
+                //var result = Session.Query<Xe>().Where(i => i.TrangThaiXe == TrangThaiXe.kd);
                 return GetCollection<Xe>(nameof(Xes));
+                //XPCollection<ThamDinh> thamdinhs = new XPCollection<ThamDinh>(Session, result);
+               
             }
         }
+        
         #endregion
-
+        
         #region Action
-        [Action(Caption ="Cho thuê", ConfirmationMessage="Xác nhận cho thuê", TargetObjectsCriteria = "[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,luutam#")]
-        public void TrangThaiThueAction()
-        {
-            TrangThaiThue = TrangThaiThue.dangchothue;
-        }
-        [Action(Caption = "Nhận xe", AutoCommit = true,TargetObjectsCriteria = "[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,dangchothue#")]
-        public void NhanXeAction(NhanXeParameter parameter)
-        {
-            TienDenBu = parameter.DenBu;
-            PhuThu = parameter.PhuThu;
-            GhiChuNhanHang = parameter.GhiChuNhanHang;
-            TrangThaiThue = TrangThaiThue.datraxe;
-        }
+        //[Action(Caption ="Cho thuê", ConfirmationMessage="Xác nhận cho thuê",SelectionDependencyType = MethodActionSelectionDependencyType.RequireSingleObject, TargetObjectsCriteria = "[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,luutam#",ImageName = "rental-car")]
+        //public void TrangThaiThueAction()
+        //{
+        //    TrangThaiThue = TrangThaiThue.dangchothue;
+        //}
+        //[Action(Caption = "Nhận xe", AutoCommit = true, SelectionDependencyType = MethodActionSelectionDependencyType.RequireSingleObject,TargetObjectsCriteria = "[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,dangchothue#",ImageName = "rental")]
+        //public void NhanXeAction(NhanXeParameter parameter)
+        //{
+        //    TienDenBu = parameter.DenBu;
+        //    PhuThu = parameter.PhuThu;
+        //    GhiChuNhanHang = parameter.GhiChuNhanHang;
+        //    TrangThaiThue = TrangThaiThue.datraxe;
+        //}
         #endregion 
     }
     #region DomainComponent
-    [DomainComponent]
-    [XafDisplayName("Thông tin nhận xe")]
-    public class NhanXeParameter
-    {
-        [XafDisplayName("Đền bù")]
-        public int DenBu { get; set; }
-
-        [XafDisplayName("Phụ thu")]
-        public int PhuThu { get; set; }
-
-        [XafDisplayName("Ghi chú nhận hàng")]
-        [Size(SizeAttribute.Unlimited)]
-        public string GhiChuNhanHang { get; set; }
-    }
+    
     #endregion
 }

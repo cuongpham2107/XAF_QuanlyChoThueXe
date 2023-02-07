@@ -20,7 +20,7 @@ public class DXApplicationBlazorApplication : BlazorApplication {
         // TODO: đặt kích thước popup windows bằng 60% bề rộng màn hình
         CustomizeTemplate += (s, e) => {
             if (e.Template is IPopupWindowTemplateSize size) {
-                size.MaxWidth = "70vw"; // bề rộng popup luôn bằng 60% bề rộng khuôn hình
+                size.MaxWidth = "85vw"; // bề rộng popup luôn bằng 60% bề rộng khuôn hình
                 //size.Width = "1000px";
                 //size.MaxHeight = "70vh";
                 //size.Height = "800px";

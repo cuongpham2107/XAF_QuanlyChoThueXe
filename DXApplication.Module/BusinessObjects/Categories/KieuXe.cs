@@ -6,6 +6,8 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
+using DXApplication.Blazor.Common;
+using DXApplication.Module.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +17,14 @@ using System.Text;
 namespace DXApplication.Module.BusinessObjects.Categories
 {
     [DefaultClassOptions]
-    
-    public class KieuXe : BaseObject
+    [NavigationItem(Menu.MenuCatalog)]
+    [DefaultProperty(nameof(TenKieuXe))]
+    //[ImageName("car")]
+    [XafDisplayName("Kiểu xe")]
+    [DefaultListViewOptions(MasterDetailMode.ListViewOnly, true, NewItemRowPosition.Top)]
+    [ListViewFindPanel(true)]
+    [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
+    public class KieuXe : BaseObject, IListViewInline
     { 
         public KieuXe(Session session)
             : base(session)

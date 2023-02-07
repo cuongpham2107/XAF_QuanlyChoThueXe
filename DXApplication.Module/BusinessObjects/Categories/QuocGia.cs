@@ -7,6 +7,7 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DXApplication.Blazor.Common;
+using DXApplication.Module.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,12 +19,12 @@ namespace DXApplication.Module.BusinessObjects.Categories
     [DefaultClassOptions]
     [NavigationItem(Menu.MenuCatalog)]
     [DefaultProperty(nameof(TenQuocGia))]
-    //[ImageName("car")]
+    [ImageName("earth")]
     [XafDisplayName("Quốc gia")]
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, true, NewItemRowPosition.Top)]
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
-    public class QuocGia : BaseObject
+    public class QuocGia : BaseObject, IListViewInline
     { 
         public QuocGia(Session session)
             : base(session)

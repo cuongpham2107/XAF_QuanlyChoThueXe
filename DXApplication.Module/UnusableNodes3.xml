@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="Personnel_ListView" NewItemRowPosition="Bottom" />
+  </Views>
+  <ActionDesign Id="ActionDesign">
+    <Actions Id="Actions">
+      <Action Id="ChoThue.TrangThaiThueAction" TargetObjectsCriteria="[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,luutam#" />
+    </Actions>
+  </ActionDesign>
+  <BOModel Id="BOModel">
+    <Class Name="DXApplication.Module.BusinessObjects.Main.ChoThue">
+      <AppearanceRules Id="AppearanceRules">
+        <AppearanceRule Id="HideEdit" Criteria="[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,dangchothue# Or [TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,datraxe#" BackColor="224, 224, 224" Priority="0" />
+      </AppearanceRules>
+    </Class>
+  </BOModel>
+</Application>

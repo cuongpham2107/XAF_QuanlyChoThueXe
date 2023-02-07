@@ -6,6 +6,7 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
+using DXApplication.Blazor.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,13 @@ using System.Text;
 namespace DXApplication.Module.BusinessObjects.Main
 {
     [DefaultClassOptions]
+    [NavigationItem(Menu.MenuCatalog)]
+    [DefaultProperty(nameof(MoTa))]
+    [ImageName("gallery")]
+    [XafDisplayName("Thư viện ảnh")]
+    [DefaultListViewOptions(MasterDetailMode.ListViewOnly, true, NewItemRowPosition.Top)]
+    [ListViewFindPanel(true)]
+    [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     public class NhieuHinh : BaseObject
     { 
         public NhieuHinh(Session session)

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Default" ImageName="" />
+    </Items>
+  </NavigationItems>
+  <ActionDesign Id="ActionDesign">
+    <Actions Id="Actions">
+      <Action Id="BaoDuong.StatusAction" TargetObjectsCriteria="[TrangThaiBaoDuong] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiBaoDuong,lt#" ImageName="Check" />
+    </Actions>
+  </ActionDesign>
+</Application>

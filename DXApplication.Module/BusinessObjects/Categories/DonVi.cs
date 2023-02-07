@@ -6,6 +6,8 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
+using DXApplication.Blazor.Common;
+using DXApplication.Module.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +17,14 @@ using System.Text;
 namespace DXApplication.Module.BusinessObjects.Categories
 {
     [DefaultClassOptions]
-    
-    public class DonVi : BaseObject
+    [NavigationItem(Menu.MenuCatalog)]
+    [DefaultProperty(nameof(tenDonVi))]
+    [ImageName("smart-city")]
+    [XafDisplayName("Đơn vị")]
+    [DefaultListViewOptions(MasterDetailMode.ListViewOnly, true, NewItemRowPosition.Top)]
+    [ListViewFindPanel(true)]
+    [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
+    public class DonVi : BaseObject, IListViewInline
     { 
         public DonVi(Session session)
             : base(session)
@@ -49,5 +57,6 @@ namespace DXApplication.Module.BusinessObjects.Categories
             get => dienGiai;
             set => SetPropertyValue(nameof(DienGiai), ref dienGiai, value);
         }
+        
     }
 }

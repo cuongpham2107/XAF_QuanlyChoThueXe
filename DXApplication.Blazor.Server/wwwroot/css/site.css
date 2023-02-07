@@ -54,8 +54,9 @@ app {
 }
 
 .main-toolbar {
-    -webkit-box-shadow: 0 0 2px 2px rgb(0 0 0 / 20%);
-    box-shadow: 0 0px 1px 2px rgb(0 0 0 / 20%);
+    box-shadow: rgb(0 0 0 / 45%) 0px 25px 20px -20px;
+    /* -webkit-box-shadow: 0 0 2px 2px rgb(0 0 0 / 20%);
+    box-shadow: 0 0px 1px 2px rgb(0 0 0 / 20%);*/
     border-radius: 0;
     margin-bottom: 0.8rem;
 }

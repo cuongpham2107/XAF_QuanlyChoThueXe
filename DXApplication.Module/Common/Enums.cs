@@ -25,12 +25,17 @@ public class Enums
     public enum TrangThaiXe
     {
         [XafDisplayName("Khả dụng")] kd = 0,
-        [XafDisplayName("Đang bảo dưỡng")] dbd = 1,
-        [XafDisplayName("Đã bán xe")] dbx = 2,
+        [XafDisplayName("Đã bán xe")] dbx = 1,
     }
     public enum TrangThaiBaoDuong
     {
         [XafDisplayName("Lưu tạm")] lt = 0,
         [XafDisplayName("Đã duyệt")] dx =1,
+    }
+    public enum LyDo
+    {
+        [XafDisplayName("Thu tiền tạm ứng")] thuTienTamUng = 0,
+        [XafDisplayName("Bảo dưỡng, sửa chữa")] baoDuongSuaChua = 1,
+        [XafDisplayName("Đổ xăng")] doXang = 2,
     }
 }

@@ -1,11 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application Title="DXApplication">
-  <ActionDesign>
-    <Actions>
-      <Action Id="BaoDuong.StatusAction" TargetObjectsCriteria="[TrangThaiBaoDuong] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiBaoDuong,lt#" ImageName="Check" />
-      <Action Id="ChoThue.TrangThaiThueAction" TargetObjectsCriteria="[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,luutam#" />
-    </Actions>
-  </ActionDesign>
   <BOModel>
     <Class Name="DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser" Caption="Base User" />
     <Class Name="DXApplication.Module.BusinessObjects.Main.BaoDuong">
@@ -16,14 +10,29 @@
     </Class>
     <Class Name="DXApplication.Module.BusinessObjects.Main.ChoThue">
       <AppearanceRules>
-        <AppearanceRule Id="HideEdit" Criteria="[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,dangchothue# Or [TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,datraxe#" BackColor="224, 224, 224" Priority="0" />
         <AppearanceRule Id="HideGioThue" Criteria="[LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,ngay# Or [LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,thang#" Visibility="Hide" Enabled="True" />
         <AppearanceRule Id="HideNgayThang" Enabled="True" Criteria="[LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,gio# Or [LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,ngay#" />
         <AppearanceRule Id="HideNgayThue" Criteria="[LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,gio# Or [LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,thang#" Enabled="True" />
-        <AppearanceRule Id="ShowEdit" Visibility="" Enabled="" Priority="1" />
+        <AppearanceRule Id="TamUng" BackColor="255, 255, 255" FontColor="255, 128, 0" />
+        <AppearanceRule Id="Trangthaidangchothue" Criteria="[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,dangchothue#" BackColor="Yellow" />
+        <AppearanceRule Id="Trangthaidatraxe" BackColor="DeepSkyBlue" Criteria="[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,datraxe#" />
+      </AppearanceRules>
+    </Class>
+    <Class Name="DXApplication.Module.BusinessObjects.Main.GiaoDichTien">
+      <AppearanceRules>
+        <AppearanceRule Id="HideBaoDuong" Criteria="[ChoThue] Is Not Null" />
+        <AppearanceRule Id="HideChoThue" Criteria="[BaoDuong] Is Not Null" />
       </AppearanceRules>
     </Class>
   </BOModel>
+  <NavigationItems>
+    <Items>
+      <Item Id="Chức năng" ImageName="innovation" />
+      <Item Id="Danh mục" ImageName="options" />
+      <Item Id="Reports" ImageName="" />
+      <Item Id="State Machine" ImageName="" />
+    </Items>
+  </NavigationItems>
   <Options>
     <LayoutManagerOptions RequiredFieldMark="*" />
   </Options>
@@ -33,6 +42,30 @@
   </SchemaModules>
   <Views>
     <ListView Id="ApplicationUser_ListView" Caption="Users" />
+    <DetailView Id="BaoDuong_DetailView">
+      <Layout>
+        <TabbedGroup Id="Tabs" Index="0" RelativeSize="100">
+          <LayoutGroup Id="Detail" Caption="Chi tiết bảo dưỡng" RelativeSize="100" Index="0">
+            <LayoutGroup Id="Detail_col1" RelativeSize="49.93342210386152">
+              <LayoutItem Id="TenPhieuBaoDuong" RelativeSize="4.2105263157894735" />
+              <LayoutItem Id="Xe" RelativeSize="3.1578947368421053" />
+              <LayoutItem Id="LoaiBaoDuong" RelativeSize="3.1578947368421053" />
+              <LayoutItem Id="SoLuong" RelativeSize="3.1578947368421053" />
+              <LayoutItem Id="DonVi" RelativeSize="3.1578947368421053" />
+              <LayoutItem Id="DonGia" RelativeSize="83.15789473684211" />
+            </LayoutGroup>
+            <LayoutGroup Id="Detail_col2" RelativeSize="50.06657789613848">
+              <LayoutItem Id="ThanhTien" RelativeSize="4.2105263157894735" />
+              <LayoutItem Id="Ngay" RelativeSize="3.1578947368421053" />
+              <LayoutItem Id="ApplicationUser" RelativeSize="3.1578947368421053" />
+              <LayoutItem Id="TrangThaiBaoDuong" RelativeSize="3.1578947368421053" />
+              <LayoutItem Id="DienGiai" RelativeSize="86.3157894736842" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Main" Direction="Horizontal" Removed="True" />
+        </TabbedGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="ChoThue_DetailView">
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
@@ -107,13 +140,31 @@
         <ColumnInfo Id="SoKhung" Index="-1" />
         <ColumnInfo Id="SoMay" Index="-1" />
         <ColumnInfo Id="TenChuXe" Index="-1" />
-        <ColumnInfo Id="TrangThai" Index="-1" />
         <ColumnInfo Id="TrangThaiXe" Index="-1" />
         <ColumnInfo Id="GiaThueGio" Index="5" />
         <ColumnInfo Id="GiaThueNgay" Index="6" />
         <ColumnInfo Id="GiaThueThang" Index="7" />
       </Columns>
     </ListView>
-    <ListView Id="Personnel_ListView" NewItemRowPosition="Bottom" />
+    <DetailView Id="GiaoDichTien_DetailView">
+      <Layout>
+        <TabbedGroup Id="Tabs" Index="0" RelativeSize="100">
+          <LayoutGroup Id="Detail" ShowCaption="False" Direction="Horizontal" Index="0" RelativeSize="100" IsNewNode="True" Removed="True">
+            <LayoutGroup Id="Detail_col1" ShowCaption="False" Index="0" RelativeSize="49.93342210386152" IsNewNode="True">
+              <LayoutItem Id="Ngay" ViewItem="Ngay" Index="0" RelativeSize="4.289544235924933" IsNewNode="True" />
+              <LayoutItem Id="LyDo" ViewItem="LyDo" Index="1" RelativeSize="3.2171581769436997" IsNewNode="True" />
+              <LayoutItem Id="Thu" ViewItem="Thu" Index="2" RelativeSize="3.2171581769436997" IsNewNode="True" />
+              <LayoutItem Id="Chi" ViewItem="Chi" Index="3" RelativeSize="4.021447721179625" IsNewNode="True" />
+              <LayoutItem Id="Tong" ViewItem="Tong" Index="4" RelativeSize="85.25469168900804" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Detail_col2" ShowCaption="False" Index="1" RelativeSize="50.06657789613848" IsNewNode="True">
+              <LayoutItem Id="ChoThue" ViewItem="ChoThue" Index="0" RelativeSize="3.2171581769436997" IsNewNode="True" />
+              <LayoutItem Id="BaoDuong" ViewItem="BaoDuong" Index="1" RelativeSize="96.7828418230563" IsNewNode="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Main" Removed="True" />
+        </TabbedGroup>
+      </Layout>
+    </DetailView>
   </Views>
 </Application>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <BOModel Id="BOModel">
+    <Class Name="DXApplication.Module.BusinessObjects.Main.ChoThue">
+      <AppearanceRules Id="AppearanceRules">
+        <AppearanceRule Id="ShowEdit" Visibility="" Enabled="" Priority="1" />
+      </AppearanceRules>
+    </Class>
+  </BOModel>
+</Application>

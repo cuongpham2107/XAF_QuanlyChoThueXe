@@ -21,7 +21,7 @@ namespace DXApplication.Module.BusinessObjects.Main
     [DefaultClassOptions]
     //[CustomDetailView(Tabbed = true)]
     [NavigationItem(Menu.MenuMain)]
-    [DefaultProperty($"{nameof(LoaiXe)}-{nameof(DoiXe)}-{nameof(BienSo)}")]
+    [DefaultProperty(nameof(TenXe))]
     [ImageName("car")]
     [XafDisplayName("Xe")]
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, true, NewItemRowPosition.Top)]
@@ -40,6 +40,7 @@ namespace DXApplication.Module.BusinessObjects.Main
         }
 
 
+        string tenXe;
         ChoThue choThue;
         DateTime? hetHanBaoHiem;
         DateTime dangKyLanDau;
@@ -61,6 +62,18 @@ namespace DXApplication.Module.BusinessObjects.Main
         string doiXe;
         LoaiXe loaiXe;
         #region Xe
+        [XafDisplayName("Tên xe")]
+        [ModelDefault("AllowEdit","False")]
+        [VisibleInDetailView(true)]
+        [VisibleInListView(true)]
+        public string TenXe
+        {
+            get
+            {
+                return $"{LoaiXe}-{DoiXe}-{BienSo}";
+            }
+            set => SetPropertyValue(nameof(TenXe), ref tenXe, value);
+        }
         [XafDisplayName("Loại xe")]
         public LoaiXe LoaiXe
         {
@@ -115,12 +128,7 @@ namespace DXApplication.Module.BusinessObjects.Main
             get => giaThueThang;
             set => SetPropertyValue(nameof(GiaThueThang), ref giaThueThang, value);
         }
-        [XafDisplayName("Còn dùng")]
-        public bool TrangThai
-        {
-            get => trangThai;
-            set => SetPropertyValue(nameof(TrangThai), ref trangThai, value);
-        }
+        
         [XafDisplayName("Trạng thái")]
         public TrangThaiXe TrangThaiXe
         {

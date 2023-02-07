@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using DomainComponents.Common;
+using DXApplication.Module.Extension;
 
 namespace DXApplication.Module.BusinessObjects.Categories
 {
@@ -26,7 +27,7 @@ namespace DXApplication.Module.BusinessObjects.Categories
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
 
 
-    public class LoaiXe : BaseObject
+    public class LoaiXe : BaseObject, IListViewInline
     { 
         public LoaiXe(Session session)
             : base(session)

@@ -21,14 +21,40 @@
   <ItemGroup>
     <None Remove="BusinessObjects\Main\Xe.cs~RF63db09d1.TMP" />
     <None Remove="Images\0x0.png" />
+    <None Remove="Images\car %281%29.png" />
+    <None Remove="Images\car-rental.png" />
     <None Remove="Images\car.png" />
+    <None Remove="Images\color-palette.png" />
+    <None Remove="Images\earth.png" />
+    <None Remove="Images\gallery.png" />
+    <None Remove="Images\innovation.png" />
+    <None Remove="Images\insurance.png" />
+    <None Remove="Images\lending.png" />
     <None Remove="Images\loai-xe.png" />
+    <None Remove="Images\options.png" />
+    <None Remove="Images\rental-car.png" />
+    <None Remove="Images\rental.png" />
+    <None Remove="Images\smart-city.png" />
+    <None Remove="Images\vehicles.png" />
     <None Remove="Model.DesignedDiffs.xafml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\0x0.png" />
+    <EmbeddedResource Include="Images\car (1).png" />
+    <EmbeddedResource Include="Images\car-rental.png" />
     <EmbeddedResource Include="Images\car.png" />
+    <EmbeddedResource Include="Images\color-palette.png" />
+    <EmbeddedResource Include="Images\earth.png" />
+    <EmbeddedResource Include="Images\gallery.png" />
+    <EmbeddedResource Include="Images\innovation.png" />
+    <EmbeddedResource Include="Images\insurance.png" />
+    <EmbeddedResource Include="Images\lending.png" />
     <EmbeddedResource Include="Images\loai-xe.png" />
+    <EmbeddedResource Include="Images\options.png" />
+    <EmbeddedResource Include="Images\rental-car.png" />
+    <EmbeddedResource Include="Images\rental.png" />
+    <EmbeddedResource Include="Images\smart-city.png" />
+    <EmbeddedResource Include="Images\vehicles.png" />
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +74,7 @@
     <PackageReference Include="DevExpress.ExpressApp.Xpo" Version="22.2.3" />
     <PackageReference Include="DevExpress.Persistent.Base" Version="22.2.3" />
     <PackageReference Include="DevExpress.Persistent.BaseImpl.Xpo" Version="22.2.3" />
+    <PackageReference Include="EPPlus" Version="6.1.2" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resource.Designer.cs">
@@ -67,6 +94,18 @@
       <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
     </None>
     <None Update="UnusableNodes1.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes2.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes3.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes4.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes5.xml">
       <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
     </None>
   </ItemGroup>
