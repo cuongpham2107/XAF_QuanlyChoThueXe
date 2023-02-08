@@ -34,16 +34,10 @@
               <LayoutItem Id="SoCMND" RelativeSize="7.0588235294117645" />
               <LayoutItem Id="NoiCap" RelativeSize="7.0588235294117645" />
               <LayoutItem Id="NgayCap" RelativeSize="7.0588235294117645" />
-              <LayoutItem Id="NgayDuTinhTra" RelativeSize="7.0588235294117645" />
-              <LayoutItem Id="TamUng" RelativeSize="7.0588235294117645" />
-              <LayoutItem Id="SoPhieu" RelativeSize="7.0588235294117645" />
               <LayoutItem Id="DienGiai" RelativeSize="20" />
             </LayoutGroup>
             <LayoutGroup Id="Detail_col2" RelativeSize="64.71428571428571">
               <LayoutGroup Id="Autobae4955b-9253-434d-843c-b3a734dc8d14" Caption="Autobae4955b-9253-434d-843c-b3a734dc8d14(17)" RelativeSize="50.33112582781457">
-                <LayoutItem Id="SoGioThue" RelativeSize="9.411764705882353" />
-                <LayoutItem Id="NgayTra" RelativeSize="7.0588235294117645" />
-                <LayoutItem Id="Thang" RelativeSize="7.0588235294117645" />
                 <LayoutItem Id="TienThue" RelativeSize="7.0588235294117645" />
                 <LayoutItem Id="TienDenBu" RelativeSize="7.0588235294117645" />
                 <LayoutItem Id="PhaiThu" RelativeSize="7.0588235294117645" />
@@ -115,5 +109,18 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="Xe_LookupListView" ShowAutoFilterRow="True" PageSize="100">
+      <Columns>
+        <ColumnInfo Id="LoaiXe" PropertyName="LoaiXe" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="QuocGia" PropertyName="QuocGia" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="MauSon" PropertyName="MauSon" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="SoCho" PropertyName="SoCho" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="TrangThaiXe" PropertyName="TrangThaiXe" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="GiaThueGio" PropertyName="GiaThueGio" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="GiaThueNgay" PropertyName="GiaThueNgay" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="GiaThueThang" PropertyName="GiaThueThang" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="HinhAnh" PropertyName="HinhAnh" Index="9" IsNewNode="True" />
+      </Columns>
+    </ListView>
   </Views>
 </Application>

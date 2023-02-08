@@ -1,5 +1,6 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
@@ -26,7 +27,12 @@ namespace DXApplication.Module.BusinessObjects.Main
     [XafDisplayName("Xe")]
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, true, NewItemRowPosition.Top)]
     [ListViewFindPanel(true)]
-    [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
+    [LookupEditorMode(LookupEditorMode.AllItems)]
+
+    [Appearance("HideEdit", AppearanceItemType = "ViewItem", BackColor = "224,224,224", TargetItems = "*", Criteria = "[TrangThaiXe] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiXe,dct#", Context = "Any", Enabled = false, Priority = 0)]
+
+    [Appearance("TrangThaiKhaDung", BackColor = "Blue", FontColor = "White",Criteria = "[TrangThaiXe] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiXe,kd#", TargetItems = "TrangThaiXe", Context = "Any", Priority = 1)]
+    [Appearance("TrangThaiDangChoThue", BackColor = "Gold", FontColor = "Black", Criteria = "[TrangThaiXe] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiXe,dct#", TargetItems = "TrangThaiXe", Context = "Any", Priority = 2)]
     public class Xe : BaseObject
     { 
         public Xe(Session session)
@@ -132,7 +138,20 @@ namespace DXApplication.Module.BusinessObjects.Main
         [XafDisplayName("Trạng thái")]
         public TrangThaiXe TrangThaiXe
         {
-            get => trangThaiXe;
+            get
+            {
+                if(!IsLoading && !IsSaving)
+                {
+                    if (ChoThue != null )
+                    {
+                        if(ChoThue.TrangThaiThue == TrangThaiThue.dangchothue)
+                        {
+                            return TrangThaiXe.dct;
+                        }
+                    }
+                }
+                return trangThaiXe;
+            }
             set => SetPropertyValue(nameof(TrangThaiXe), ref trangThaiXe, value);
         }
         [XafDisplayName("Diễn giải")]

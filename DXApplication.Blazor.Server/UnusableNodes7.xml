@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="Xe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Detail">
+            <LayoutGroup Id="Detail_col2">
+              <LayoutGroup Id="Auto710176be-603d-411b-b163-da18bbda99e9">
+                <LayoutItem Id="TrangThai" ViewItem="TrangThai" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="Xe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Detail">
+            <LayoutGroup Id="Detail_col2">
+              <LayoutGroup Id="Auto710176be-603d-411b-b163-da18bbda99e9">
+                <LayoutItem Id="TrangThai" ViewItem="TrangThai" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ChoThue_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Detail">
+            <LayoutGroup Id="Detail_col1">
+              <LayoutItem Id="NgayDuTinhTra" RelativeSize="7.0588235294117645" />
+              <LayoutItem Id="TamUng" RelativeSize="7.0588235294117645" />
+              <LayoutItem Id="SoPhieu" RelativeSize="7.0588235294117645" />
+            </LayoutGroup>
+            <LayoutGroup Id="Detail_col2">
+              <LayoutGroup Id="Autobae4955b-9253-434d-843c-b3a734dc8d14">
+                <LayoutItem Id="SoGioThue" RelativeSize="9.411764705882353" />
+                <LayoutItem Id="NgayTra" RelativeSize="7.0588235294117645" />
+                <LayoutItem Id="Thang" RelativeSize="7.0588235294117645" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

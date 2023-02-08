@@ -26,6 +26,7 @@ public class Enums
     {
         [XafDisplayName("Khả dụng")] kd = 0,
         [XafDisplayName("Đã bán xe")] dbx = 1,
+        [XafDisplayName("Đang cho thuê")] dct = 2,
     }
     public enum TrangThaiBaoDuong
     {

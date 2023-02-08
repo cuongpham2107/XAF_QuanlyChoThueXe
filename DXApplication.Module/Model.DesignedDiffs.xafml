@@ -13,7 +13,7 @@
         <AppearanceRule Id="HideGioThue" Criteria="[LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,ngay# Or [LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,thang#" Visibility="Hide" Enabled="True" />
         <AppearanceRule Id="HideNgayThang" Enabled="True" Criteria="[LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,gio# Or [LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,ngay#" />
         <AppearanceRule Id="HideNgayThue" Criteria="[LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,gio# Or [LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,thang#" Enabled="True" />
-        <AppearanceRule Id="TamUng" BackColor="255, 255, 255" FontColor="255, 128, 0" />
+        <AppearanceRule Id="TamUng" BackColor="White" FontColor="255, 128, 0" />
         <AppearanceRule Id="Trangthaidangchothue" Criteria="[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,dangchothue#" BackColor="Yellow" />
         <AppearanceRule Id="Trangthaidatraxe" BackColor="DeepSkyBlue" Criteria="[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,datraxe#" />
       </AppearanceRules>
@@ -22,6 +22,11 @@
       <AppearanceRules>
         <AppearanceRule Id="HideBaoDuong" Criteria="[ChoThue] Is Not Null" />
         <AppearanceRule Id="HideChoThue" Criteria="[BaoDuong] Is Not Null" />
+      </AppearanceRules>
+    </Class>
+    <Class Name="DXApplication.Module.BusinessObjects.Main.Xe" DefaultLookupEditorMode="AllItems">
+      <AppearanceRules>
+        <AppearanceRule Id="TrangThaiKhaDung" Criteria="[TrangThaiXe] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiXe,kd#" />
       </AppearanceRules>
     </Class>
   </BOModel>
@@ -166,5 +171,6 @@
         </TabbedGroup>
       </Layout>
     </DetailView>
+    <ListView Id="Xe_LookupListView" ShowAutoFilterRow="True" IsGroupPanelVisible="True" />
   </Views>
 </Application>

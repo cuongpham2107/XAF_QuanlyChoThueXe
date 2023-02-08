@@ -70,7 +70,11 @@ public class BlazorListViewController : ViewController<ListView> {
         base.OnActivated();
 
         // mặc định ẩn full text search vì đã có searchbox của blazor grid
+        //var _filterController = Frame.GetController<FilterController>();
+        //_filterController?.FullTextFilterAction.Active.SetItemValue("Disable", false);
+
+        //hiện full text search 
         var _filterController = Frame.GetController<FilterController>();
-        _filterController?.FullTextFilterAction.Active.SetItemValue("Disable", false);
+        _filterController?.FullTextFilterAction.Active.SetItemValue("Disable", true);
     }
 }
