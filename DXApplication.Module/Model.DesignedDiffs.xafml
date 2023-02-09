@@ -133,6 +133,11 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="ChoThue_ListView">
+      <Filters>
+        <Filter Id="Loại thuê giờ" Criteria="[LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,gio#" />
+      </Filters>
+    </ListView>
     <ListView Id="ChoThue_Xes_ListView">
       <Columns>
         <ColumnInfo Id="ChoThue" Index="-1" />

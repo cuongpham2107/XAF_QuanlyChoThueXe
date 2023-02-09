@@ -142,12 +142,11 @@ namespace DXApplication.Module.BusinessObjects.Main
             {
                 if(!IsLoading && !IsSaving)
                 {
-                    if (ChoThue != null )
+                    if (ChoThue != null && ChoThue.TrangThaiThue == TrangThaiThue.dangchothue)
                     {
-                        if(ChoThue.TrangThaiThue == TrangThaiThue.dangchothue)
-                        {
-                            return TrangThaiXe.dct;
-                        }
+                       
+                         return TrangThaiXe.dct;
+                        
                     }
                 }
                 return trangThaiXe;

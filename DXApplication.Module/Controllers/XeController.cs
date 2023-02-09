@@ -164,9 +164,14 @@ namespace DXApplication.Module.Controllers
                             
 
                             xe.GiaThueGio = int.Parse(workSheet.Cells[i, j++].Value.ToString());
+
                             xe.GiaThueNgay = int.Parse(workSheet.Cells[i, j++].Value.ToString());
+
                             xe.GiaThueThang = int.Parse(workSheet.Cells[i, j++].Value.ToString());
+
                             xe.TrangThaiXe = Blazor.Common.Enums.TrangThaiXe.kd;
+
+
                             
                             View.CollectionSource.Add(xe);
                             ObjectSpace.CommitChanges();

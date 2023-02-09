@@ -38,5 +38,6 @@ public class Enums
         [XafDisplayName("Thu tiền tạm ứng")] thuTienTamUng = 0,
         [XafDisplayName("Bảo dưỡng, sửa chữa")] baoDuongSuaChua = 1,
         [XafDisplayName("Đổ xăng")] doXang = 2,
+        [XafDisplayName("Khách hàng trả tiền thuê")] khachHangTraTienThue = 3,
     }
 }

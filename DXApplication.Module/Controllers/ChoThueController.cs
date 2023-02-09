@@ -63,6 +63,33 @@ namespace DXApplication.Module.Controllers
             choThue.GhiChuNhanHang = parameter.GhiChuNhanHang;
             choThue.TrangThaiThue = Blazor.Common.Enums.TrangThaiThue.datraxe;
             this.ObjectSpace.CommitChanges();
+            if (((DetailView)ObjectSpace.Owner).CurrentObject is ChoThue ct)
+            {
+
+                GiaoDichTien gdt = ObjectSpace.CreateObject<GiaoDichTien>();
+                var _chothue = ObjectSpace.GetObject(ct);
+                gdt.Ngay = _chothue.NgayThue;
+                if(_chothue.PhaiThu != 0)
+                {
+                    gdt.Thu = _chothue.PhaiThu;
+                }
+                else
+                {
+                    gdt.Thu = 0;
+                }
+                if (_chothue.PhaiTra != 0)
+                {
+                    gdt.Chi = _chothue.PhaiTra;
+                }
+                else
+                {
+                    gdt.Chi = 0;
+                }
+                gdt.LyDo = Blazor.Common.Enums.LyDo.khachHangTraTienThue;
+                gdt.ChoThue = ct;
+                this.ObjectSpace.CommitChanges();
+            }
+
             Application.ShowViewStrategy.ShowMessage("Cập nhật thành công");
         }
        

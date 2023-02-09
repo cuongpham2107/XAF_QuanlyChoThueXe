@@ -4,6 +4,7 @@ using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.Model;
+using DevExpress.ExpressApp.SystemModule;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
@@ -30,13 +31,13 @@ namespace DXApplication.Module.BusinessObjects.Main
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, true, NewItemRowPosition.Top)]
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
-    
-    
+
+
     //[CustomDetailView(FieldsToRemove = new[] { nameof(Xes) })]
     //[CustomDetailView(ViewId = $"{nameof(Division)}_DetailView_Full", Tabbed = true)]
     //[CustomRootListView(DetailViewId = $"{nameof(Division)}_DetailView_Full")]
     //[CustomNestedListView(nameof(Xes), FieldsToSum = new[] { "FullName:Count" })]
-    
+
     //[CustomDetailView(Tabbed = true)]
     //[CustomListViewColumnWidth(new[] { $"{nameof(FullName)}:20%", "Age:30", "DateOfBirth:80" })]
     //[CustomDetailView(FieldsToRemove = new[] { nameof(Jobs), nameof(Resources) })]
@@ -46,7 +47,10 @@ namespace DXApplication.Module.BusinessObjects.Main
     //[CustomNestedListView(nameof(Jobs))]
     //[CustomNestedListView(nameof(Resources))]
 
-   
+    [ListViewFilter("Tất cả", "", Index = 1)]
+    [ListViewFilter("Loại thuê giờ", "[LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,gio#", Index = 2)]
+    [ListViewFilter("Loại thuê Ngày", "[LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,ngay#", Index = 3)]
+    [ListViewFilter("Loại thuê Tháng", "[LoaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+LoaiThue,thang#", Index = 4)]
 
     [Appearance("HideEdit", AppearanceItemType = "ViewItem", BackColor = "224,224,224", TargetItems = "*", Criteria = "[TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,dangchothue# Or [TrangThaiThue] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiThue,datraxe#", Context = "Any", Enabled = false,Priority = 0)]
 
