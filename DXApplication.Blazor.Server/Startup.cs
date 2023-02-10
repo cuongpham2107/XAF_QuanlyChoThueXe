@@ -10,6 +10,8 @@ using DXApplication.Blazor.Server.Services;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using DevExpress.ExpressApp.Core;
 using DevExpress.Blazor.Configuration;
+using DXApplication.Blazor.Server.Hubs;
+using Microsoft.AspNetCore.ResponseCompression;
 
 namespace DXApplication.Blazor.Server;
 
@@ -29,6 +31,10 @@ public class Startup {
         services.AddServerSideBlazor();
         services.AddHttpContextAccessor(); 
         services.AddScoped<CircuitHandler, CircuitHandlerProxy>();
+        services.AddResponseCompression(options =>
+        {
+            options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "application/octet-stream" });
+        });
         services.AddXaf(Configuration, builder => {
             builder.UseApplication<DXApplicationBlazorApplication>();
             builder.Modules
@@ -116,6 +122,7 @@ public class Startup {
         app.UseEndpoints(endpoints => {
             endpoints.MapXafEndpoints();
             endpoints.MapBlazorHub();
+            endpoints.MapHub<ChatHub>("/chathub");
             endpoints.MapFallbackToPage("/_Host");
             endpoints.MapControllers();
         });

@@ -1,10 +1,21 @@
-﻿@using DevExpress.ExpressApp
+﻿@using DXApplication.Blazor.BusinessObjects;
+@using DevExpress.Data.Linq.Helpers;
+@using DevExpress.ExpressApp
 @using DevExpress.ExpressApp.Blazor
 @using DevExpress.ExpressApp.Blazor.Components
+@using DevExpress.ExpressApp.Blazor.Services;
 @using DevExpress.ExpressApp.Blazor.Templates
+@using DevExpress.Xpo;
 @using Microsoft.JSInterop
+@using Microsoft.AspNetCore.SignalR.Client
+@using Models
+
+
+@inject NavigationManager NavigationManager
+@implements IAsyncDisposable
 
 @inherits FrameTemplateComponentBase<MypeApplicationWindowTemplate>
+
 
 <div id="main-window-template-component" class="app h-100 d-flex flex-column">
     <ComponentModelObserver ComponentModel="@FrameTemplate.NavigateBackActionControl.ButtonModel">
@@ -18,6 +29,9 @@
             <div class="header-right-side w-100 overflow-hidden d-flex align-items-center ps-4">
                 @FrameTemplate.NavigateBackActionControl.GetComponentContent()
                 <ViewCaptionComponent WindowCaption="@FrameTemplate" />
+                <div class="nested-toolbar pb-3 w-100 overflow-hidden pr-2 pt-3">
+                     @FrameTemplate.HeaderToolbar.GetComponentContent()
+                </div>
                 @FrameTemplate.AccountComponent.GetComponentContent()
                 <SettingsComponent />
             </div>
@@ -44,7 +58,77 @@
             </SizeModeContainer>
         </div>
     </div>
+    
 </div>
+<button id="myBtn2" style="background:#1b52cd" @onclick="ShowPopup"><img style="width: 35px;" src="~/images/chat.png" /></button>
+
+<DxPopup HeaderText="Chat"
+         @bind-Visible="@PopupVisible">
+    <Content>
+        <div class="container overflow-auto shadow-sm p-3 mb-5 bg-white rounded" style="height:500px;">
+            @if (!userMessages.Any())
+            {
+                <p>No message yet, start chatting!</p>
+            }
+            @foreach (var item in userMessages)
+            {
+                
+                <div class="d-flex flex-row @(item.CurrentUser ? "justify-content-end":"justify-content-start mb-4")">
+                    @if (!item.CurrentUser)
+                    {
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3-bg.webp"
+                     alt="avatar 1" style="width: 45px; height: 100%;">
+                    }
+
+                    <div>
+                        <p class="small p-2 me-3 mb-1 rounded-3 @(item.CurrentUser ? "text-white bg-primary" : "")">
+                            @item.Message
+                        </p>
+                        <p class="small me-3 mb-3 rounded-3 text-muted  @(item.CurrentUser ? "d-flex justify-content-end" : "")">@item.DateSent.ToString("HH:mm | MMM dd")</p>
+                    </div>
+
+                    @if (item.CurrentUser)
+                    {
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava4-bg.webp"
+                     alt="avatar 1" style="width: 45px; height: 100%;">
+                    }
+                </div>
+            }
+        </div>
+        <div class="container">
+            <div class="row">
+               @* <ul>
+                    @if (!Users.Any())
+                    {
+                        <p>No user yet, start chatting!</p>
+                    }
+                    @foreach (var item in Users)
+                    {
+                        <li>
+                            <p>
+                                @item.UserName
+                            </p>
+                        </li>
+                    }
+                   
+                </ul>*@
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+               
+                <div class="col-12">
+                    <textarea class="form-control" @bind="messageInput" placeholder="Start typing..."></textarea>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="button" @onclick="Send" style="margin-top: 10px;float: right;" disabled="@(!IsConnected)">
+                        Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </Content>
+</DxPopup>
 
 @code {
     public static RenderFragment Create(MypeApplicationWindowTemplate applicationWindowTemplate) => @<MypeApplicationWindowTemplateComponent FrameTemplate="@applicationWindowTemplate" />;
@@ -53,5 +137,62 @@
     protected override async Task InvokeAfterViewChangedJS() {
         await JSRuntime.InvokeVoidAsync("xaf.closeSideBarIfMobile");
         await base.InvokeAfterViewChangedJS();
+    }
+
+    bool PopupVisible { get; set; } = false;
+    private void ShowPopup(MouseEventArgs args)
+    {
+        PopupVisible = true;
+        InvokeAsync(StateHasChanged);
+    }
+    private static DevExpress.ExpressApp.IObjectSpace objectSpace;
+    private static DevExpress.ExpressApp.Blazor.BlazorApplication blazorApplication;
+
+
+    private HubConnection hubConnection;
+    
+
+    private List<UserMessage> userMessages = new();
+    public string currentUser { get; set; } = SecuritySystem.CurrentUser.ToString();
+    private string messageInput;
+    private bool isUserReadonly = false;
+    
+    public bool IsConnected => hubConnection.State == HubConnectionState.Connected;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        hubConnection = new HubConnectionBuilder()
+                            .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
+                            .Build();
+        hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+        {
+            userMessages.Add(new UserMessage
+                {
+                    Username = user,
+                    Message = message,
+                    CurrentUser = user == currentUser,
+                    DateSent = DateTime.Now,
+                });
+            this.InvokeAsync(() => this.StateHasChanged());
+
+        });
+        await hubConnection.StartAsync();
+    }
+    private async Task Send()
+    {
+        if (!string.IsNullOrEmpty(currentUser) && !string.IsNullOrEmpty(messageInput))
+        {
+            await hubConnection.SendAsync("SendMessage", currentUser, messageInput);
+            isUserReadonly = true;
+            messageInput = string.Empty;
+        }
+    }
+    public async ValueTask DisposeAsync()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.DisposeAsync();
+        }
     }
 }

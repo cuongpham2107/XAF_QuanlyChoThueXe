@@ -7,12 +7,15 @@ using DevExpress.ExpressApp.Blazor.Templates.Toolbar.ActionControls;
 using DevExpress.ExpressApp.Templates;
 using DevExpress.ExpressApp.Templates.ActionControls;
 using DevExpress.Persistent.Base;
+using DXApplication.Blazor.BusinessObjects;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 
 namespace DXApplication.Blazor.Server.Templates;
 
 public class MypeApplicationWindowTemplate : WindowTemplateBase, ISupportActionsToolbarVisibility, ISelectionDependencyToolbar {
+
+   
     public MypeApplicationWindowTemplate() {
         NavigateBackActionControl = new NavigateBackActionControl();
         AddActionControl(NavigateBackActionControl);
@@ -47,22 +50,37 @@ public class MypeApplicationWindowTemplate : WindowTemplateBase, ISupportActions
         Toolbar.AddActionContainer("Diagnostic", DevExpress.Blazor.ToolbarItemAlignment.Right);
         Toolbar.AddActionContainer(nameof(PredefinedCategory.View), DevExpress.Blazor.ToolbarItemAlignment.Right);
         Toolbar.AddActionContainer(nameof(PredefinedCategory.Unspecified), DevExpress.Blazor.ToolbarItemAlignment.Right);
+
+        HeaderToolbar = new DxToolbarAdapter(new DxToolbarModel());
+        HeaderToolbar.AddActionContainer(nameof(PredefinedCategory.Menu), DevExpress.Blazor.ToolbarItemAlignment.Right);
+
     }
-    protected override IEnumerable<IActionControlContainer> GetActionControlContainers() => Toolbar.ActionContainers;
+    protected override IEnumerable<IActionControlContainer> GetActionControlContainers()
+    {
+        List<IActionControlContainer> containers = new List<IActionControlContainer>();
+        containers.AddRange(Toolbar.ActionContainers.ToList());
+        containers.AddRange(HeaderToolbar.ActionContainers.ToList());
+
+        return containers;
+    }
     protected override RenderFragment CreateComponent() => MypeApplicationWindowTemplateComponent.Create(this);
     protected override void BeginUpdate() {
         base.BeginUpdate();
         ((ISupportUpdate)Toolbar).BeginUpdate();
+        ((ISupportUpdate)HeaderToolbar).BeginUpdate();
     }
     protected override void EndUpdate() {
+
+        ((ISupportUpdate)HeaderToolbar).EndUpdate();
         ((ISupportUpdate)Toolbar).EndUpdate();
         base.EndUpdate();
     }
-    public bool IsActionsToolbarVisible { get; private set; }
+public bool IsActionsToolbarVisible { get; private set; }
     public NavigateBackActionControl NavigateBackActionControl { get; }
     public AccountComponentAdapter AccountComponent { get; }
     public ShowNavigationItemActionControl ShowNavigationItemActionControl { get; }
     public DxToolbarAdapter Toolbar { get; }
+    public DxToolbarAdapter HeaderToolbar { get; }
     public string AboutInfoString { get; set; }
     void ISupportActionsToolbarVisibility.SetVisible(bool isVisible) => IsActionsToolbarVisible = isVisible;
 }

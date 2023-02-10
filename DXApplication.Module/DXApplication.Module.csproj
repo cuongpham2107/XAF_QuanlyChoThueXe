@@ -24,6 +24,7 @@
     <None Remove="Images\car %281%29.png" />
     <None Remove="Images\car-rental.png" />
     <None Remove="Images\car.png" />
+    <None Remove="Images\chat.png" />
     <None Remove="Images\color-palette.png" />
     <None Remove="Images\earth.png" />
     <None Remove="Images\gallery.png" />
@@ -43,6 +44,7 @@
     <EmbeddedResource Include="Images\car (1).png" />
     <EmbeddedResource Include="Images\car-rental.png" />
     <EmbeddedResource Include="Images\car.png" />
+    <EmbeddedResource Include="Images\chat.png" />
     <EmbeddedResource Include="Images\color-palette.png" />
     <EmbeddedResource Include="Images\earth.png" />
     <EmbeddedResource Include="Images\gallery.png" />

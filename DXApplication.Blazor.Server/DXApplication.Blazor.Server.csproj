@@ -36,6 +36,7 @@
     <PackageReference Include="DevExpress.ExpressApp.Security.Xpo" Version="22.2.3" />
     <PackageReference Include="DevExpress.ExpressApp.Validation.Blazor" Version="22.2.3" />
     <PackageReference Include="EPPlus" Version="6.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.2" />
     <PackageReference Include="MySql.Data" Version="8.0.31" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +69,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Components\" />
     <Folder Include="wwwroot\FileMau\" />
   </ItemGroup>
 </Project>
