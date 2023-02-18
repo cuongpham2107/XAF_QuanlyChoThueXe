@@ -11,7 +11,6 @@ namespace DXApplication.Blazor.Server.Models
         public string Message { get; set; }
         public bool CurrentUser { get; set; }
         public DateTime DateSent { get; set; }
-        public IList<ApplicationUser> Users { get; set; }
-
+       
     }
 }

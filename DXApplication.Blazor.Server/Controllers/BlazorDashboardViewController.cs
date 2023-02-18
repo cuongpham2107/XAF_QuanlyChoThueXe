@@ -11,8 +11,9 @@ public class BlazorDashboardViewController : ViewController {
     public BlazorDashboardViewController() {
         TargetObjectType = typeof(DashboardData);
         TargetViewType = ViewType.DetailView;
+        
     }
-
+    
     protected override void OnActivated() {
         base.OnActivated();
         //TODO chỉ áp dụng cho My Dashboard

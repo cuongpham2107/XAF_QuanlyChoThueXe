@@ -5,10 +5,12 @@
 @using DevExpress.ExpressApp.Blazor.Components
 @using DevExpress.ExpressApp.Blazor.Services;
 @using DevExpress.ExpressApp.Blazor.Templates
+@using DevExpress.ExpressApp.Security.Strategy;
 @using DevExpress.Xpo;
 @using Microsoft.JSInterop
 @using Microsoft.AspNetCore.SignalR.Client
 @using Models
+@using DevExpress.ExpressApp.Security
 
 
 @inject NavigationManager NavigationManager
@@ -64,6 +66,7 @@
 
 <DxPopup HeaderText="Chat"
          @bind-Visible="@PopupVisible">
+        
     <Content>
         <div class="container overflow-auto shadow-sm p-3 mb-5 bg-white rounded" style="height:500px;">
             @if (!userMessages.Any())
@@ -95,25 +98,7 @@
                 </div>
             }
         </div>
-        <div class="container">
-            <div class="row">
-               @* <ul>
-                    @if (!Users.Any())
-                    {
-                        <p>No user yet, start chatting!</p>
-                    }
-                    @foreach (var item in Users)
-                    {
-                        <li>
-                            <p>
-                                @item.UserName
-                            </p>
-                        </li>
-                    }
-                   
-                </ul>*@
-            </div>
-        </div>
+        
         <div class="container">
             <div class="row">
                
@@ -141,22 +126,19 @@
 
     bool PopupVisible { get; set; } = false;
     private void ShowPopup(MouseEventArgs args)
-    {
+    { 
         PopupVisible = true;
         InvokeAsync(StateHasChanged);
     }
-    private static DevExpress.ExpressApp.IObjectSpace objectSpace;
-    private static DevExpress.ExpressApp.Blazor.BlazorApplication blazorApplication;
-
-
+ 
     private HubConnection hubConnection;
     
-
     private List<UserMessage> userMessages = new();
     public string currentUser { get; set; } = SecuritySystem.CurrentUser.ToString();
+   
     private string messageInput;
     private bool isUserReadonly = false;
-    
+    public IList<ApplicationUser> ListUser { get; set; }
     public bool IsConnected => hubConnection.State == HubConnectionState.Connected;
 
 
@@ -195,4 +177,5 @@
             await hubConnection.DisposeAsync();
         }
     }
+    
 }

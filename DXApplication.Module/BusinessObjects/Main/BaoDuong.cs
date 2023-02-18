@@ -27,19 +27,19 @@ namespace DXApplication.Module.BusinessObjects.Main
     [NavigationItem(Menu.MenuMain)]
     [DefaultProperty(nameof(TenPhieuBaoDuong))]
     [ImageName("insurance")]
-    
+
     [XafDisplayName("Bảo dưỡng xe")]
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, true, NewItemRowPosition.Top)]
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
 
-    [Appearance("TrangThai", AppearanceItemType = "ViewItem", TargetItems = "TrangThaiBaoDuong", Criteria = "[TrangThaiBaoDuong] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiBaoDuong,dx#", Context = "Any", BackColor = "DeepSkyBlue",FontColor ="White", Priority = 1)]
+    [Appearance("TrangThai", AppearanceItemType = "ViewItem", TargetItems = "TrangThaiBaoDuong", Criteria = "[TrangThaiBaoDuong] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiBaoDuong,dx#", Context = "Any", BackColor = "DeepSkyBlue", FontColor = "White", Priority = 1)]
 
-    [Appearance("HideEdit", AppearanceItemType= "ViewItem",TargetItems ="*",Criteria = "[TrangThaiBaoDuong] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiBaoDuong,dx#", Context ="Any", Enabled =false)]   
+    [Appearance("HideEdit", AppearanceItemType = "ViewItem", TargetItems = "*", Criteria = "[TrangThaiBaoDuong] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThaiBaoDuong,dx#", Context = "Any", Enabled = false)]
 
-    
+
     public class BaoDuong : BaseObject, IListViewPopup
-    { 
+    {
         public BaoDuong(Session session)
             : base(session)
         {
@@ -47,7 +47,7 @@ namespace DXApplication.Module.BusinessObjects.Main
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            
+
         }
 
         string tenPhieuBaoDuong;
@@ -66,14 +66,14 @@ namespace DXApplication.Module.BusinessObjects.Main
         [VisibleInDetailView(true)]
         [VisibleInListView(true)]
         [VisibleInLookupListView(true)]
-        [ModelDefault("AllowEdit","False")]
+        [ModelDefault("AllowEdit", "False")]
         public string TenPhieuBaoDuong
         {
             get
             {
-                if(!IsLoading && !IsSaving)
+                if (!IsLoading && !IsSaving)
                 {
-                   return $"{Ngay}-{LoaiBaoDuong}";
+                    return $"{Ngay}-{LoaiBaoDuong}";
                 }
                 return null;
             }
@@ -112,7 +112,7 @@ namespace DXApplication.Module.BusinessObjects.Main
             set => SetPropertyValue(nameof(DonGia), ref donGia, value);
         }
         [XafDisplayName("Thành tiền")]
-        [ModelDefault("AllowEdit","False")]
+        [ModelDefault("AllowEdit", "False")]
         public int ThanhTien
         {
             get
